@@ -23,5 +23,20 @@
       }
       
     </script>
+      <button onclick="changeTitleAndFavicon()">Cloak</button>
+    <script>
+    function changeTitleAndFavicon() {
+      // Show popup dialog and get user input
+      var newTitle = prompt("Enter a new title for the page:", document.title);
+      var newFavicon = prompt("Enter the URL of the new favicon:", document.querySelector("link[rel*='icon']").href);
+
+      // Update page title and favicon
+      document.title = newTitle;
+      var faviconLink = document.querySelector("link[rel*='icon']");
+      faviconLink.href = newFavicon;
+    }
+  </script>
+</head>
+<body>
   </body>
 </html>
