@@ -70,7 +70,7 @@
     <h1>AXLNova</h1>
     <center>
     <button onclick="openNewTab()">Launch</button>
-    <button onclick="changeTitleAndFavicon()">Tab Cloak</button>
+    <button onclick="changeTitleAndFavicon()">Cloak</button>
     </center>
     
     <script>
@@ -81,15 +81,24 @@
       }
 
       function changeTitleAndFavicon() {
-        (function() {
-        var l = document.querySelector("link[rel*='icon']") || document.createElement('link');
-       l.type = 'image/x-icon';
-       l.rel = 'shortcut icon';
-        l.href = 'https://google.com/favicon.ico';
-       document.getElementsByTagName('head')[0].appendChild(l);
-        document.title = 'Google';
-        })();
+       const newTitle = prompt('Enter a new title:');
+       const newFavicon = prompt('Enter a URL for the new favicon:');
+        document.title = newTitle;
+
+        const favicon = document.querySelector('link[rel="icon"]');
+        if (favicon) {
+         favicon.href = newFavicon;
+        } else {
+          const newFaviconLink = document.createElement('link');
+          newFaviconLink.rel = 'icon';
+          newFaviconLink.href = newFavicon;
+          document.head.appendChild(newFaviconLink);
+        }
       }
+
+      const button = document.querySelector('button');
+      button.addEventListener('click', changeTitleAndFavicon);
+
     </script>
   </body>
 </html>
