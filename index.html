@@ -1,30 +1,4 @@
 <!DOCTYPE html>
-<title>AXLNova</title>
-<html>
-  <head>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f1f1f1;
-      }
-      h1 {
-        margin: 0;
-        padding: 20px;
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-      }
-      #content {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="content">
-
-<!DOCTYPE html>
 <html>
   <head>
     <title>AXLNova</title>
@@ -64,15 +38,29 @@
         border: none;
         margin: 10px;
       }
+      .error-message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 32px;
+        color: #333;
+      }
     </style>
   </head>
   <body>
-    <h1>AXLNova</h1>
-    <center>
-    <button onclick="openNewTab()">Launch</button>
-    <button onclick="changeTitleAndFavicon()">Cloak</button>
-    </center>
-    
+    <div id="content" style="display: none;">
+      <h1>AXLNova</h1>
+      <center>
+        <button onclick="openNewTab()">Launch</button>
+        <button onclick="changeTitleAndFavicon()">Cloak</button>
+      </center>
+    </div>
+
+    <div id="error" class="error-message">
+      404 Error: Page not found.
+    </div>
+
     <script>
       function openNewTab() {
         var win = window.open();
@@ -81,13 +69,13 @@
       }
 
       function changeTitleAndFavicon() {
-       const newTitle = prompt('Enter a new title:');
-       const newFavicon = prompt('Enter a URL for the new favicon:');
+        const newTitle = prompt('Enter a new title:');
+        const newFavicon = prompt('Enter a URL for the new favicon:');
         document.title = newTitle;
 
         const favicon = document.querySelector('link[rel="icon"]');
         if (favicon) {
-         favicon.href = newFavicon;
+          favicon.href = newFavicon;
         } else {
           const newFaviconLink = document.createElement('link');
           newFaviconLink.rel = 'icon';
@@ -96,18 +84,9 @@
         }
       }
 
-      const button = document.querySelector('button');
-      button.addEventListener('click', changeTitleAndFavicon);
-
-    </script>
-  </body>
-</html>
-      
-    </div>
-    
-    <script>
       document.addEventListener("keydown", function(event) {
         if (event.key === "p") {
+          document.getElementById("error").style.display = "none";
           document.getElementById("content").style.display = "block";
         }
       });
