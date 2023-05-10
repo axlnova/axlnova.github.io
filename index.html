@@ -84,10 +84,18 @@
         }
       }
 
+      let showContent = false;
+
       document.addEventListener("keydown", function(event) {
         if (event.key === "p") {
-          document.getElementById("error").style.display = "none";
-          document.getElementById("content").style.display = "block";
+          if (showContent) {
+            document.getElementById("content").style.display = "none";
+            document.getElementById("error").style.display = "flex";
+          } else {
+            document.getElementById("error").style.display = "none";
+            document.getElementById("content").style.display = "block";
+          }
+          showContent = !showContent;
         }
       });
     </script>
